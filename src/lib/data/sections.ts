@@ -63,7 +63,7 @@ export const content: Section[] = [
 		open: false,
 		content: [
 			{
-				text: 'An SSH key (ed25519 now available)'
+				text: 'A SSH key (ed25519 now available)'
 			},
 			{
 				text: 'Terminal emulator (Alacritty recommended, other available)'
@@ -75,7 +75,8 @@ export const content: Section[] = [
 				text: 'PM2'
 			},
 			{
-				text: 'a web project in git published in a code sharing platform with a pm2 ecosystem file (like this one)'
+				text: 'a web project in git published in a code sharing platform with a pm2 ecosystem file (like this one)',
+				url: 'https://github.com/artgpz/deploy-vm'
 			},
 			{
 				text: `make sure to check the framework's prerequisites for a node production deployment (for example, sveltekit requires adapter-node)`
@@ -134,8 +135,8 @@ export const content: Section[] = [
 			{
 				text: 'Prepare an ecosystem file'
 			},
-			{ text: 'Get the IP address of the VM' },
-			{ text: 'Have a repo with that includes an ecosystem.config.js # for pm2' }
+			{ text: 'commit your changes' },
+			{ text: 'Get the IP address of the VM' }
 		]
 	},
 	{
@@ -145,8 +146,13 @@ export const content: Section[] = [
 		content: [
 			{
 				title: 'Login as root, update server',
-				text: 'sudo -s'
+				text: 'ssh root@ip-address (use -i KEYNAME if key name is not default)'
 			},
+			{ title: 'Create deploy user (optional, not for azure)', text: 'adduser deploy' },
+			{
+				text: 'usermod -aG sudo deploy'
+			},
+			{ title: 'Change to root user', text: 'sudo -s' },
 			{ text: 'apt update' },
 			{ text: 'apt upgrade' },
 			{
@@ -164,17 +170,17 @@ export const content: Section[] = [
 			},
 			{ text: `apt install caddy` },
 			{
-				title: 'pnpm',
-				text: 'exit (install on user we want to use for deploy, preferably not root)'
-			},
-			{ text: 'source /home/deploy/.bashrc' },
-			{ text: 'curl -fsSL https://get.pnpm.io/install.sh | sh -' },
-			{ title: 'Node', text: 'pnpm env use --global lts' },
-			{ text: 'pnpm add -g pm2' },
-			{
 				title: 'git',
 				text: 'apt install git'
-			}
+			},
+			{
+				title: 'pnpm',
+				text: 'sudo -su deploy && cd (install on user we want to use for deploy, preferably not root)'
+			},
+			{ text: 'curl -fsSL https://get.pnpm.io/install.sh | sh -' },
+			{ text: 'source /home/deploy/.bashrc' },
+			{ title: 'Node', text: 'pnpm env use --global lts' },
+			{ text: 'pnpm add -g pm2' }
 		]
 	},
 	{
@@ -182,17 +188,20 @@ export const content: Section[] = [
 		title: 'Server configuration',
 		open: false,
 		content: [
+			{ text: 'nano .bashrc' },
+			{ text: `comment out: If not running interactively, don't do anything` },
+			{
+				text: 'create or copy your current ssh key to access your repo provider...'
+			},
+			{ text: 'ssh git@git-provider (verify you can access your repo provider)' },
 			{
 				text: 'mkdir websites && cd websites'
 			},
 			{ text: 'mkdir deploy-vm && cd deploy-vm' },
 			{ text: 'cd && sudo -s' },
 			{ text: 'nano /etc/caddy/Caddyfile (change according to requirements)' },
-			{
-				text: '#if repo is private, copy ssh key used to fetch from repo to ~/.ssh or generate a new one'
-			},
-			{ text: 'ssh git@github.com (type yes and enter)' },
-			{ text: '#configure secrets, envs or any post-deploy requirements' }
+			{ text: 'caddy reload (before running this point your DNS A record to the server IP)' },
+			{ text: 'configure secrets, envs or any post-deploy requirements' }
 		]
 	},
 	{
@@ -204,7 +213,7 @@ export const content: Section[] = [
 				text: 'pm2 deploy ecosystem.config.js main setup (change to name of the deployment)'
 			},
 			{
-				text: 'pm2 deploy ecosystem.config.js $NAME # to (deploy manually)'
+				text: 'pm2 deploy ecosystem.config.js main (deploy manually)'
 			}
 		]
 	},
