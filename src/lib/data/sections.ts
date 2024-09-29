@@ -5,6 +5,7 @@ export type Content = {
 	checked?: boolean
 	url?: string
 	code?: boolean
+	download?: string
 }
 
 export type Section = {
@@ -26,12 +27,12 @@ export const content: Section[] = [
 				text: 'terminal emulator, ssh'
 			},
 			{
-				subtitle: 'Proxy/Reverse proxy/Load balancer',
-				text: 'caddy, nginx, traefik, haproxy'
-			},
-			{
 				subtitle: 'Something to publish',
 				text: 'html!, css, js...'
+			},
+			{
+				subtitle: 'Optional but kind of essential: Proxy/Reverse proxy/Load balancer',
+				text: 'caddy, nginx, traefik, haproxy'
 			}
 		]
 	},
@@ -63,9 +64,10 @@ export const content: Section[] = [
 		open: false,
 		content: [
 			{
-				text: 'A SSH key (ed25519 now available)'
+				text: 'A SSH key (ed25519 now available for azure vps)'
 			},
 			{
+				url: 'https://alacritty.org/',
 				text: 'Terminal emulator (Alacritty recommended, other available)'
 			},
 			{
@@ -195,14 +197,17 @@ export const content: Section[] = [
 			},
 			{ text: 'ssh git@git-provider (verify you can access your repo provider)' },
 			{
+				title: 'Configuration to match the ecosystem file path',
 				text: 'mkdir websites && cd websites'
 			},
 			{
-				title: 'Configuration to match the ecosystem file path',
 				text: 'mkdir deploy-vm && cd deploy-vm'
 			},
 			{ text: 'cd && sudo -s' },
-			{ text: 'nano /etc/caddy/Caddyfile (change according to requirements)' },
+			{
+				download: '/Caddyfile',
+				text: 'nano /etc/caddy/Caddyfile (change according to requirements)'
+			},
 			{ text: 'caddy reload (before running this point your DNS A record to the server IP)' },
 			{ text: 'configure secrets, envs or any post-deploy requirements' }
 		]
@@ -228,6 +233,7 @@ export const content: Section[] = [
 		open: false,
 		content: [
 			{
+				download: `/debian.sh`,
 				text: `
 #!/bin/bash
 
@@ -365,6 +371,7 @@ fi`,
 		content: [
 			{
 				code: true,
+				download: `/tmux.conf`,
 				text: `
 #24 bit colour
 set-option -sa terminal-overrides ",xterm*:Tc"

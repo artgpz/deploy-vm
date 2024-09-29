@@ -1,7 +1,7 @@
 <script lang="ts">
-	import type { Content } from '$lib/data/sections';
-	export let data: Content;
-	export let index: number | undefined = undefined;
+	import type { Content } from '$lib/data/sections'
+	export let data: Content
+	export let index: number | undefined = undefined
 </script>
 
 <div class="content" style:--delay={`${index ? index * 50 - index * index : 0}ms`}>
@@ -10,6 +10,11 @@
 	{/if}
 	{#if data.subtitle}
 		<h3>{data.subtitle}</h3>
+	{/if}
+	{#if data.download}
+		<div class="download-block">
+			<a class="download" href={data.download} download>Download file</a>
+		</div>
 	{/if}
 	<div class="text">
 		{#if data.url}
@@ -69,5 +74,15 @@
 		font-size: 0.8rem;
 		padding: 0 2rem;
 		border-radius: 1rem;
+	}
+	.download {
+		padding: 0.25rem 0.75rem;
+		font-size: 0.85rem;
+		border: 1px solid var(--theme-colour-text);
+		border-radius: 0.25rem;
+		margin: 0 2rem;
+	}
+	.download-block {
+		padding: 0.5rem;
 	}
 </style>
