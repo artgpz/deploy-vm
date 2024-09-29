@@ -1,14 +1,14 @@
 <script lang="ts">
-	import type { Section } from '$lib/data/sections';
-	import { slide } from 'svelte/transition';
-	export let data: Section;
-	export let index: number | undefined = undefined;
+	import type { Section } from '$lib/data/sections'
+	import { slide } from 'svelte/transition'
+	export let data: Section
+	export let index: number | undefined = undefined
 </script>
 
-<div class="section">
+<div class="section" id={`section-${index}`}>
 	<button
 		on:click={() => {
-			data.open = !data.open;
+			data.open = !data.open
 		}}
 		data-open={data.open}
 	>

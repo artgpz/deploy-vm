@@ -188,8 +188,8 @@ export const content: Section[] = [
 		title: 'Server configuration',
 		open: false,
 		content: [
-			{ text: 'nano .bashrc' },
-			{ text: `comment out: If not running interactively, don't do anything` },
+			{ text: 'nano .bashrc (in the deploy user account)' },
+			{ text: `comment out: 'If not running interactively, don't do anything...' and save` },
 			{
 				text: 'create or copy your current ssh key to access your repo provider...'
 			},
@@ -197,7 +197,10 @@ export const content: Section[] = [
 			{
 				text: 'mkdir websites && cd websites'
 			},
-			{ text: 'mkdir deploy-vm && cd deploy-vm' },
+			{
+				title: 'Configuration to match the ecosystem file path',
+				text: 'mkdir deploy-vm && cd deploy-vm'
+			},
 			{ text: 'cd && sudo -s' },
 			{ text: 'nano /etc/caddy/Caddyfile (change according to requirements)' },
 			{ text: 'caddy reload (before running this point your DNS A record to the server IP)' },
@@ -206,13 +209,15 @@ export const content: Section[] = [
 	},
 	{
 		id: 7,
-		title: 'Local configuration',
+		title: 'Deploy the website',
 		open: false,
 		content: [
 			{
+				title: 'Setup with pm2',
 				text: 'pm2 deploy ecosystem.config.cjs main setup (change to name of the deployment)'
 			},
 			{
+				title: 'Deploy from local machine (this can be automated via ci/cd',
 				text: 'pm2 deploy ecosystem.config.cjs main (deploy manually)'
 			}
 		]
