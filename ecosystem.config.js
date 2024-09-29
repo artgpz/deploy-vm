@@ -20,7 +20,7 @@ module.exports = {
 	 * http://pm2.keymetrics.io/docs/usage/deployment/
 	 */
 	deploy: {
-		production: {
+		main: {
 			user: 'deployer', // deployer user
 			host: 'IP_ADDRESS', // IP address of your server
 			ref: 'origin/main', // the branch you want to deploy
