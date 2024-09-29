@@ -29,7 +29,7 @@ module.exports = {
 			path: '/home/deploy/websites/deploy-vm/main', // the path where you want the project to be
 			// code you want to run after the project has been pushed to your server
 			'post-deploy':
-				'pnpm install && pnpm run build && pm2 reload ecosystem.config.js --env production'
+				'pnpm install && pnpm run build && pm2 reload ecosystem.config.cjs --env production'
 		}
 	}
 }
