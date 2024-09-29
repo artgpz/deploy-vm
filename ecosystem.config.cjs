@@ -19,16 +19,17 @@ module.exports = {
 	 * Deployment section
 	 * http://pm2.keymetrics.io/docs/usage/deployment/
 	 */
+
 	deploy: {
 		main: {
-			user: 'deployer', // deployer user
-			host: 'IP_ADDRESS', // IP address of your server
+			user: 'deploy', // deployer user
+			host: '65.108.88.51', // IP address of your server
 			ref: 'origin/main', // the branch you want to deploy
-			repo: 'git@github.com/deploy-vm.git', // the ssh git clone URL
-			path: '/home/deployer/websites/deploy-vm/main', // the path where you want the project to be
+			repo: 'git@github.com:artgpz/deploy-vm.git', // the ssh git clone URL
+			path: '/home/deploy/websites/deploy-vm/main', // the path where you want the project to be
 			// code you want to run after the project has been pushed to your server
 			'post-deploy':
-				'npm install && npm run build && pm2 reload ecosystem.config.js --env production'
+				'pnpm install && pnpm run build && pm2 reload ecosystem.config.js --env production'
 		}
 	}
 }

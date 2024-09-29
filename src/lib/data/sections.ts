@@ -210,10 +210,10 @@ export const content: Section[] = [
 		open: false,
 		content: [
 			{
-				text: 'pm2 deploy ecosystem.config.js main setup (change to name of the deployment)'
+				text: 'pm2 deploy ecosystem.config.cjs main setup (change to name of the deployment)'
 			},
 			{
-				text: 'pm2 deploy ecosystem.config.js main (deploy manually)'
+				text: 'pm2 deploy ecosystem.config.cjs main (deploy manually)'
 			}
 		]
 	},
