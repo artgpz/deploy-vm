@@ -23,7 +23,7 @@ module.exports = {
 	deploy: {
 		main: {
 			user: 'deploy', // deployer user
-			host: '65.108.88.51', // IP address of your server
+			host: '20.0.153.8', // IP address of your server
 			ref: 'origin/main', // the branch you want to deploy
 			repo: 'git@github.com:artgpz/deploy-vm.git', // the ssh git clone URL
 			path: '/home/deploy/websites/deploy-vm/main', // the path where you want the project to be
