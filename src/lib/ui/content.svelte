@@ -1,4 +1,5 @@
 <script lang="ts">
+	import { base } from '$app/paths'
 	import type { Content } from '$lib/data/sections'
 	export let data: Content
 	export let index: number | undefined = undefined
@@ -13,7 +14,7 @@
 	{/if}
 	{#if data.download}
 		<div class="download-block">
-			<a class="download" href={data.download} download>Download file</a>
+			<a class="download" href={`${base}/${data.download}`} download>Download file</a>
 		</div>
 	{/if}
 	<div class="text">
