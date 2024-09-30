@@ -1,5 +1,6 @@
 <script lang="ts">
 	import { goto } from '$app/navigation'
+	import { base } from '$app/paths'
 	import { page } from '$app/stores'
 	import { content } from '$lib/data/sections'
 	import { contentStore } from '$lib/stores/store'
@@ -24,7 +25,7 @@
 				bind:value={mode}
 				on:change={(e) => {
 					if (e.currentTarget.value === 'list') {
-						goto('/')
+						goto(`${base}`)
 					}
 					if (e.currentTarget.value === 'pages') {
 						goto(sluggy(content[0].title))
