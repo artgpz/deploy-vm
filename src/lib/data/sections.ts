@@ -19,7 +19,7 @@ export type Section = {
 export const content: Section[] = [
 	{
 		id: 0,
-		title: 'What do we need to deploy a website on a server/VPS/VM?',
+		title: 'What do we need to deploy a website on a server-VPS-VM?',
 		open: true,
 		content: [
 			{
@@ -38,7 +38,7 @@ export const content: Section[] = [
 	},
 	{
 		id: 1,
-		title: 'How do we deploy a non SSR/static website?',
+		title: 'How do we deploy a non SSR-static website?',
 		open: false,
 		content: [
 			{

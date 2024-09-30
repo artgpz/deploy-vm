@@ -1,20 +1,21 @@
 <script lang="ts">
-	import { content } from '$lib/data/sections';
-	import Content from '$lib/ui/content.svelte';
-	import Section from '$lib/ui/section.svelte';
-	let data = content;
-	$: percent_1 = data.reduce((acc, el) => {
+	import { content } from '$lib/data/sections'
+	import { contentStore } from '$lib/stores/store'
+	import Content from '$lib/ui/content.svelte'
+	import Section from '$lib/ui/section.svelte'
+	let data = content
+	$: percent_1 = $contentStore.reduce((acc, el) => {
 		if (el.open) {
-			acc++;
+			acc++
 		}
-		return acc;
-	}, 0);
-	$: percent_2 = data.reduce((acc, el) => {
+		return acc
+	}, 0)
+	$: percent_2 = $contentStore.reduce((acc, el) => {
 		if (el.open) {
-			acc++;
+			acc++
 		}
-		return acc;
-	}, 0);
+		return acc
+	}, 0)
 </script>
 
 <div
@@ -24,24 +25,8 @@
 	style:--percent-2={`${100 - (percent_2 * 100) / 2 / data.length}%`}
 ></div>
 <div id="page">
-	<div class="header">
-		<h1>Hello!</h1>
-		<div class="buttons">
-			<button
-				on:click={() => {
-					data = data.map((s) => ({ ...s, open: true }));
-				}}>open all</button
-			>
-			<button
-				on:click={() => {
-					data = data.map((s) => ({ ...s, open: false }));
-				}}>close all</button
-			>
-		</div>
-	</div>
-	<!-- <p>It is: {time}</p> -->
 	<div class="sections">
-		{#each data as section, i (section.id)}
+		{#each $contentStore as section, i (section.id)}
 			<Section index={i} bind:data={section}>
 				{#each section.content as text, j}
 					<Content index={j} data={text}></Content>
@@ -70,30 +55,11 @@
 		font-family: sans-serif;
 		padding: 0rem 1rem;
 	}
-	.header {
-		display: flex;
-		justify-content: space-between;
-		align-items: center;
-		margin-bottom: 1rem;
-	}
+
 	.sections {
 		display: flex;
 		flex-direction: column;
 		justify-content: flex-start;
 		gap: 1rem;
-	}
-	.buttons {
-		margin: 0 0 0.5rem 0;
-	}
-	button {
-		font-size: 0.75rem;
-		border-radius: 0.5rem;
-		padding: 0.5rem 1.5rem;
-		background-color: white;
-		border: 1px solid #dfdfdf;
-		cursor: pointer;
-	}
-	button:hover {
-		border: 1px solid black;
 	}
 </style>

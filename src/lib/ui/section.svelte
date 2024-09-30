@@ -3,22 +3,25 @@
 	import { slide } from 'svelte/transition'
 	export let data: Section
 	export let index: number | undefined = undefined
+	export let hide_title = false
 </script>
 
 <div class="section" id={`section-${index}`}>
-	<button
-		on:click={() => {
-			data.open = !data.open
-		}}
-		data-open={data.open}
-	>
-		<h2>{data.title}</h2>
-		{#if data.subtitle}
-			<h3>{data.subtitle}</h3>
-		{/if}
-	</button>
+	{#if !hide_title}
+		<button
+			on:click={() => {
+				data.open = !data.open
+			}}
+			data-open={data.open}
+		>
+			<h2>{data.title}</h2>
+			{#if data.subtitle}
+				<h3>{data.subtitle}</h3>
+			{/if}
+		</button>
+	{/if}
 
-	{#if data.open}
+	{#if data.open || hide_title}
 		<div class="content" transition:slide>
 			<slot />
 		</div>
