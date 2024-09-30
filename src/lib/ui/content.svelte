@@ -14,7 +14,7 @@
 	{/if}
 	{#if data.download}
 		<div class="download-block">
-			<a class="download" href={`${base}/${data.download}`} download>Download file</a>
+			<a class="download" href={`${base}${data.download}`} download>Download file</a>
 		</div>
 	{/if}
 	<div class="text">
